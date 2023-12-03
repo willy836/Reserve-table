@@ -50,21 +50,21 @@ const MyReservations = () => {
   }
 
   return (
-    <>
+    <div className="my-reservation-page">
       <div className="navigation-panel">
         <NavigationPanel />
       </div>
-      <div className="container reservations-container d-flex flex-column my-reserve align-items-center justify-content-center">
-        <div>
+      <div className="container my-reservation-container">
+        <div className="text-center my-4">
           <h1>My Reservations</h1>
         </div>
-        <div className="reservations mb-2 w-100 overflow-auto">
+        <div className="reservations mb-2 d-flex flex-column align-items-center">
           {reservationsData.map((reservation) => (
             <Reservation key={reservation._id} reservation={reservation} />
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

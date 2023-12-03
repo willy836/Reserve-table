@@ -8,7 +8,7 @@ const Reservation = ({ reservation }) => {
 
   return (
     <>
-      <div className="my-reservation mt-3 justify-content-between">
+      <div className="my-reservation single-reservation mt-3 justify-content-between">
         <div className="reservation-image">
           <img
             src={reservation.restaurantTable.image}

@@ -6,6 +6,13 @@ const DeleteTable = () => {
   const { tablesData } = useSelector((state) => state.restaurantTables);
   const dispatch = useDispatch();
 
+  let isAdmin;
+  const userData = localStorage.getItem("user");
+  if (userData) {
+    const userObj = JSON.parse(userData);
+    isAdmin = userObj.isAdmin;
+  }
+
   return (
     <>
       <div className="navigation-panel">
@@ -18,7 +25,7 @@ const DeleteTable = () => {
           </div>
         )}
         <div>
-          <h1 className="text-center">Delete a Table</h1>
+          <h1 className="text-center">Delete a Table - Admin Only!</h1>
         </div>
         {tablesData.map((table) => (
           <div
@@ -51,7 +58,9 @@ const DeleteTable = () => {
               <button
                 type="button"
                 className="btn btn-danger mt-3"
-                onClick={() => dispatch(deleteRestaurantTable(table._id))}
+                onClick={() =>
+                  isAdmin && dispatch(deleteRestaurantTable(table._id))
+                }
               >
                 Delete table
               </button>

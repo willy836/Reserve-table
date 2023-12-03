@@ -699,9 +699,18 @@ li:nth-child(odd) {
   }
 
   /* -----my reservation page */
-  .reservations-container {
+  .my-reservation-container {
     height: 100vh;
     overflow: auto;
+  }
+
+  .my-reservation-page {
+    display: flex;
+    width: 100%;
+  }
+
+  .single-reservation {
+    width: 80%;
   }
 
   .my-reservation {
