@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import NavigationPanel from './NavigationPanel';
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import NavigationPanel from "./NavigationPanel";
 
 const AddTable = () => {
-  const [image, setImage] = useState('');
-  const [name, setName] = useState('');
-  const [tableSize, setTableSize] = useState('');
-  const [price, setPrice] = useState('');
-  const [desc, setDesc] = useState('');
+  const [image, setImage] = useState("");
+  const [name, setName] = useState("");
+  const [tableSize, setTableSize] = useState("");
+  const [price, setPrice] = useState("");
+  const [desc, setDesc] = useState("");
   const { tablesData } = useSelector((state) => state.restaurantTables);
 
   const handleSubmit = (event) => {
@@ -15,11 +15,16 @@ const AddTable = () => {
     const id = Math.max(...ids) + 1;
     event.preventDefault();
     if (image && name && tableSize && price && desc) {
-      fetch('https://book-a-table.onrender.com/api/v1/restaurant_tables', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      fetch("https://book-a-table.onrender.com/api/v1/restaurant_tables", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          image, name, table_size: tableSize, price, desc, id,
+          image,
+          name,
+          table_size: tableSize,
+          price,
+          desc,
+          id,
         }),
       })
         .then((response) => {
@@ -27,7 +32,7 @@ const AddTable = () => {
           return response.json();
         })
         .then(() => {
-          window.location.pathname = '/homepage';
+          window.location.pathname = "/homepage";
         })
         .catch((error) => {
           throw new Error(error);
@@ -36,7 +41,7 @@ const AddTable = () => {
   };
   return (
     <>
-      <div className="naviagtion-panel">
+      <div className="navigation-panel">
         <NavigationPanel />
       </div>
       <div className="container">
@@ -100,14 +105,15 @@ const AddTable = () => {
               </div>
 
               <div className="btn-add-c">
-                <button type="submit" className="session-btn btn-add-table">Add Table</button>
+                <button type="submit" className="session-btn btn-add-table">
+                  Add Table
+                </button>
               </div>
             </form>
           </div>
         </div>
       </div>
     </>
-
   );
 };
 

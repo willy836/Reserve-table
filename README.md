@@ -1,4 +1,5 @@
 <a name="readme-top"></a>
+
 <div align="center">
  
   <h3><b>Restaurant table reservation (Front End)</b></h3>
@@ -13,14 +14,13 @@
     - [Key Features](#key-features)
     - [Back End app](#back-end-app)
   - [🚀 Live Demo](#live-demo)
-   - [ Kanban Board](#kanban-board)
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
   - [Prerequisites](#prerequisites)
   - [Install](#install)
   - [Usage](#usage)
   - [Run tests](#run-tests)
-- [👥 Authors](#authors)
+- [👥 Author](#author)
 - [🔭 Future Features](#future-features)
 - [🤝 Contributing](#contributing)
 - [⭐️ Show your support](#support)
@@ -31,9 +31,7 @@
 
 # 📖 [Restaurant Table Reservation] <a name="about-project"></a>
 
-
-
-**[Restaurant Table Reservation]** is an app that allows user to register, add a table, reserve a table and delete the table or the reservation. The backend is built using Ruby On Rails and communicates with the frontend of the app to provide a seamless user experience. 
+**[Restaurant Table Reservation]** is an app that allows user to register, add a table, reserve a table and delete the table or the reservation. The backend is built using Node.js and communicates with the frontend of the app to provide a seamless user experience.
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -60,29 +58,22 @@
 
 ### Key Features <a name="key-features"></a>
 
-- **[Show Various Restaurant Tables]**
-- **[Add a Table]**
-- **[Delete a Table]**
+- **[Reserve a restaurant table]**
+- **[Cancel a reservation]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Back End app <a name="back-end-app"></a>
 
-Click [here](https://github.com/george827/Book-reservation-Back-End.git) to access the back end app that was built with Ruby on Rails
+Click [here](https://github.com/willy836/Reserve-table-API) to access the back end app that was built with Node.js
 
 <!-- LIVE DEMO -->
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Live Demo Link](https://restaurant-reservation-qx5z.onrender.com)
+- [Live Demo Link](https://linkcomingupsoon.com)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-## Kanban Board <a name="kanban-board"></a>
-- [Link to board](https://github.com/users/george827/projects/7)
-
-### Before starting
-![image](https://user-images.githubusercontent.com/61289730/236206442-7ee25269-42cb-4882-bf91-501366e2a83d.PNG)
 
 <!-- GETTING STARTED -->
 
@@ -118,13 +109,11 @@ In order to run this project you need:
 
 Clone this repository to your desired folder:
 
-
 ```sh
   cd my-folder
-  git clone https://github.com/george827/Book-reservation-Front_End.git
-  cd Book-reservation-Front_End
+  git clone https://github.com/willy836/Reserve-table.git
+  cd Reserve-table
 ```
-
 
 ### Install
 
@@ -154,25 +143,13 @@ To run tests, run the following command:
 
 <!-- AUTHORS -->
 
-## 👥 Authors <a name="authors"></a>
-
-👤 **George kinyanjui**
-
-- GitHub: [@george827](https://github.com/george827)
-- Twitter: [@geok8376](https://twitter.com/geok8376)
-- LinkedIn: [George kinyanjui](https://www.linkedin.com/in/georgekinyanjui/)
+## 👥 Author <a name="authors"></a>
 
 👤 **Wilson Kimiri**
 
 - GitHub: [@willy836](https://github.com/willy836)
-- Twitter: [@@Kimiri836](https://twitter.com/kimiri836/)
-- LinkedIn: [Wilson Kimiri](https://www.linkedin.com/in/wilson-kimiri-420396235/)
-
-👤 **Harshita Jain**
-
-- GitHub: [@harshitajain06](https://github.com/harshitajain06)
-- Twitter: [@harshitajain06](https://twitter.com/harshitajain06)
-- LinkedIn: [Harshita Jain](https://linkedin.com/in/HarshitaJain)
+- Twitter: [@waweruwilson1](https://twitter.com/waweruwilson1)
+- LinkedIn: [Wilson Kimiri](https://www.linkedin.com/in/wilson-kimiri/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -180,10 +157,7 @@ To run tests, run the following command:
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-
-- [ ] **[Filter users by their roles]**
-- [ ] **[update table datils]**
-- [ ] **[Rate the service]**
+- [ ] **[Refactor code]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -193,7 +167,7 @@ To run tests, run the following command:
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/george827/Book-reservation-Front_End/issues).
+Feel free to check the [issues page](https://github.com/willy836/Reserve-table/issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -201,8 +175,7 @@ Feel free to check the [issues page](https://github.com/george827/Book-reservati
 
 ## ⭐️ Show your support <a name="support"></a>
 
-
-If you like this project  you can give it a star ⭐️
+If you like this project you can give it a star ⭐️
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -210,25 +183,14 @@ If you like this project  you can give it a star ⭐️
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-
-I would like to thank Microverse for project inspiration.
-[Murat Korkmaz](https://www.behance.net/gallery/26425031/Vespa-Responsive-Redesign) for design of the app
-
+I would like to acknowledge [Murat Korkmaz](https://www.behance.net/gallery/26425031/Vespa-Responsive-Redesign) for the project design inspiration. Thank you!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 <!-- LICENSE -->
 
 ## 📝 License <a name="license"></a>
 
-This project is [MIT](https://github.com/george827/Book-reservation-Front_End/blob/dev/LICENSE) licensed.
-
-
+This project is [MIT](https://github.com/willy836/Reserve-table/blob/dev/LICENSE) licensed.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-https://cheerful-salmiakki-c8cca5.netlify.app/homepage
-https://cheerful-salmiakki-c8cca5.netlify.app/

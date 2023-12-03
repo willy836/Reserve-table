@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useParams, useNavigate } from 'react-router-dom';
-import ReactDatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import { FaCalendar } from 'react-icons/fa';
-import { postReservation } from '../redux/reservations/reservationsSlice';
-import NavigationPanel from './NavigationPanel';
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams, useNavigate } from "react-router-dom";
+import ReactDatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { FaCalendar } from "react-icons/fa";
+import { postReservation } from "../redux/reservations/reservationsSlice";
+import NavigationPanel from "./NavigationPanel";
 
 const ReservationForm = () => {
   const navigate = useNavigate();
@@ -15,8 +15,8 @@ const ReservationForm = () => {
 
   const dispatch = useDispatch();
 
-  const [tableName, setTableName] = useState('');
-  const [city, setCity] = useState('');
+  const [tableName, setTableName] = useState("");
+  const [city, setCity] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
@@ -27,9 +27,7 @@ const ReservationForm = () => {
       if (storedTable) {
         setTable(storedTable);
       } else {
-        const newTable = tablesData.find(
-          (table) => table.id === parseInt(tableId, 10),
-        );
+        const newTable = tablesData.find((table) => table._id === tableId);
 
         setTable(newTable);
         localStorage.setItem(`table-${tableId}`, JSON.stringify(newTable));
@@ -37,8 +35,7 @@ const ReservationForm = () => {
     }
   }, [tableId, tablesData]);
 
-  const user = JSON.parse(localStorage.getItem('user'));
-  const userId = user.id;
+  const user = JSON.parse(localStorage.getItem("user"));
   const userName = user.name;
 
   const handleSubmit = (e) => {
@@ -47,34 +44,33 @@ const ReservationForm = () => {
     const selectedTable = tablesData.find((table) => table.name === tableName);
 
     const newReservation = {
-      user: userName,
-      table_name: table ? table.name : selectedTable.name,
+      userName,
+      tableName: table ? table.name : selectedTable.name,
       city,
-      start_date: startDate,
-      end_date: endDate,
-      user_id: userId,
-      table_id: table ? table.id : parseInt(selectedTable.id, 10),
+      startDate,
+      endDate,
+      restaurantTable: table ? table._id : selectedTable._id,
     };
 
     dispatch(postReservation(newReservation));
 
-    const redirectTableId = table ? table.id : selectedTable.id;
+    const redirectTableId = table ? table._id : selectedTable._id;
     navigate(
       `/reserved-table/${redirectTableId}/${encodeURIComponent(
-        city,
+        city
       )}/${encodeURIComponent(startDate)}/${encodeURIComponent(endDate)}`,
-      { replace: true },
+      { replace: true }
     );
 
-    setCity('');
-    setStartDate('');
-    setEndDate('');
+    setCity("");
+    setStartDate("");
+    setEndDate("");
   };
 
   if (!table) {
     return (
       <>
-        <div className="naviagtion-panel">
+        <div className="navigation-panel">
           <NavigationPanel />
         </div>
         <form onSubmit={handleSubmit} className="reservation-form">
@@ -83,8 +79,10 @@ const ReservationForm = () => {
             <input
               type="text"
               id="user"
-              name="user"
-              defaultValue={userName.charAt(0).toUpperCase() + userName.slice(1)}
+              name="userName"
+              defaultValue={
+                userName.charAt(0).toUpperCase() + userName.slice(1)
+              }
               readOnly
             />
           </div>
@@ -93,14 +91,14 @@ const ReservationForm = () => {
             <select
               type="text"
               id="table-name"
-              name="table-name"
+              name="tableName"
               value={tableName}
               onChange={(e) => setTableName(e.target.value)}
               required
             >
               <option value="">Select a table</option>
               {tablesData.map((table) => (
-                <option key={table.id} value={table.name}>
+                <option key={table._id} value={table.name}>
                   {table.name}
                 </option>
               ))}
@@ -122,14 +120,14 @@ const ReservationForm = () => {
             <ReactDatePicker
               className="date-picker"
               id="start-date"
-              name="start-date"
+              name="startDate"
               selected={startDate}
               onChange={(date) => setStartDate(date)}
               required
             />
             <FaCalendar
               className="calendar-icon"
-              onClick={() => document.getElementById('start-date').focus()}
+              onClick={() => document.getElementById("start-date").focus()}
             />
           </div>
           <div className="form-input date-picker-wrapper">
@@ -137,14 +135,14 @@ const ReservationForm = () => {
             <ReactDatePicker
               className="date-picker"
               id="end-date"
-              name="end-date"
+              name="endDate"
               selected={endDate}
               onChange={(date) => setEndDate(date)}
               required
             />
             <FaCalendar
               className="calendar-icon"
-              onClick={() => document.getElementById('end-date').focus()}
+              onClick={() => document.getElementById("end-date").focus()}
             />
           </div>
           <button type="submit" className="reservation-btn">
@@ -161,7 +159,7 @@ const ReservationForm = () => {
         <input
           type="text"
           id="user"
-          name="user"
+          name="userName"
           defaultValue={userName.charAt(0).toUpperCase() + userName.slice(1)}
           readOnly
         />
@@ -171,7 +169,7 @@ const ReservationForm = () => {
         <input
           type="text"
           id="table-name"
-          name="table-name"
+          name="tableName"
           defaultValue={table.name}
           readOnly
         />
@@ -192,14 +190,14 @@ const ReservationForm = () => {
         <ReactDatePicker
           className="date-picker"
           id="start-date"
-          name="start-date"
+          name="startDate"
           selected={startDate}
           onChange={(date) => setStartDate(date)}
           required
         />
         <FaCalendar
           className="calendar-icon"
-          onClick={() => document.getElementById('start-date').focus()}
+          onClick={() => document.getElementById("start-date").focus()}
         />
       </div>
       <div className="form-input date-picker-wrapper">
@@ -207,14 +205,14 @@ const ReservationForm = () => {
         <ReactDatePicker
           className="date-picker"
           id="end-date"
-          name="end-date"
+          name="endDate"
           selected={endDate}
           onChange={(date) => setEndDate(date)}
           required
         />
         <FaCalendar
           className="calendar-icon"
-          onClick={() => document.getElementById('end-date').focus()}
+          onClick={() => document.getElementById("end-date").focus()}
         />
       </div>
       <button type="submit" className="reservation-btn">

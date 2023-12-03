@@ -1,16 +1,14 @@
-import React, { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import {
-  FaFacebookF, FaTwitter, FaLinkedinIn, FaGithub,
-} from 'react-icons/fa';
-import LogoutButton from './session/LogoutButton';
+import React, { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { FaFacebookF, FaTwitter, FaLinkedinIn, FaGithub } from "react-icons/fa";
+import LogoutButton from "./session/LogoutButton";
 
 const NavigationPanel = () => {
   const [showLinks, setShowLinks] = useState(false);
 
   const activeStyle = {
-    backgroundColor: '#9acd32',
-    color: '#fff',
+    backgroundColor: "#9acd32",
+    color: "#fff",
   };
 
   return (
@@ -21,7 +19,7 @@ const NavigationPanel = () => {
           <button
             type="button"
             data-testid="hamburger-button"
-            className={`hamburger ${showLinks ? 'active' : ''}`}
+            className={`hamburger ${showLinks ? "active" : ""}`}
             onClick={() => setShowLinks(!showLinks)}
           >
             <span className="bar" />
@@ -39,14 +37,14 @@ const NavigationPanel = () => {
             >
               Tables
             </Link>
-            <Link to="/AddTable">Add Table</Link>
-            <Link to="/DeleteTable" activeClassName="active-link">
+            <Link to="/add-table">Add Table</Link>
+            <Link to="/delete-table" activeClassName="active-link">
               Delete Table
             </Link>
             <Link to="/reservation-form" activeClassName="active-link">
               Make Reservation
             </Link>
-            <Link to="/Myresercvations" activeClassName="active-link">
+            <Link to="/myreservations" activeClassName="active-link">
               My Reservations
             </Link>
             <LogoutButton />
@@ -64,14 +62,14 @@ const NavigationPanel = () => {
             Tables
           </NavLink>
           <NavLink
-            to="/AddTable"
+            to="/add-table"
             className="sidenav-link"
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
             Add Table
           </NavLink>
           <NavLink
-            to="/DeleteTable"
+            to="/delete-table"
             className="sidenav-link"
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
@@ -85,7 +83,7 @@ const NavigationPanel = () => {
             Make Reservation
           </NavLink>
           <NavLink
-            to="/Myresercvations"
+            to="/myreservations"
             className="sidenav-link"
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
           >

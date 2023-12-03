@@ -1,23 +1,14 @@
-import React from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { FaCaretLeft } from 'react-icons/fa';
-import { deleteRestaurantTable } from '../redux/tables/restaurantTablesSlice';
-import NavigationPanel from './NavigationPanel';
+import React from "react";
+import { Link, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { FaCaretLeft } from "react-icons/fa";
+import NavigationPanel from "./NavigationPanel";
 
 const TableDetails = () => {
   const { tableId } = useParams();
   const { tablesData } = useSelector((state) => state.restaurantTables);
-  const table = tablesData.find((table) => table.id === parseInt(tableId, 10));
-  const {
-    table_size: TableSize, price, name, desc: description, image, id,
-  } = table;
-  const dispatch = useDispatch();
-
-  const handleDelete = (id) => {
-    dispatch(deleteRestaurantTable(id));
-    window.location.href = '/homepage';
-  };
+  const table = tablesData.find((table) => table._id === tableId);
+  const { tableSize, price, name, desc, image, _id: id } = table;
 
   return (
     <>
@@ -31,50 +22,32 @@ const TableDetails = () => {
           </div>
           <div className="col-md-6 d-flex flex-column justify-content-end mb-auto">
             <p className="details-title">
-              <strong>
-                {name}
-              </strong>
-
+              <strong>{name}</strong>
             </p>
             <ul className="detail-list">
               <li>
-                Table size:
-                {' '}
-                <span>
-                  {' '}
-                  {TableSize}
-                </span>
+                Table size: <span> {tableSize}</span>
               </li>
               <li>
-                Price:
-                {' '}
-                <span>
-                  {' '}
-                  {price}
-                </span>
+                Price: <span> {price}</span>
               </li>
               <li>
-                Table id:
-                {' '}
-                <span>
-                  {' '}
-                  {id}
-                </span>
+                Table id: <span> {id}</span>
               </li>
             </ul>
 
-            <p>{description}</p>
-            <div className="d-flex justify-content-between">
+            <p>{desc}</p>
+            <div className="d-flex justify-content-end">
               <Link
                 to={{
-                  pathname: `/single-table/${table.id}/reservation-form/${table.id}`,
+                  pathname: `/single-table/${table._id}/reservation-form/${table._id}`,
                 }}
                 className="reserve"
               >
-                <button type="button" className="session-btn reserve">Reserve</button>
+                <button type="button" className="session-btn reserve">
+                  Reserve
+                </button>
               </Link>
-
-              <button type="button" className="btn-delete-table" onClick={() => handleDelete(table.id)}>Delete</button>
             </div>
           </div>
         </div>

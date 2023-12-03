@@ -1,22 +1,20 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { FaCheckCircle } from 'react-icons/fa';
-import NavigationPanel from './NavigationPanel';
+import React from "react";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { FaCheckCircle } from "react-icons/fa";
+import NavigationPanel from "./NavigationPanel";
 
 const ReservedTable = () => {
-  const {
-    tableId, city, startDate, endDate,
-  } = useParams();
+  const { tableId, city, startDate, endDate } = useParams();
 
   const { tablesData } = useSelector((state) => state.restaurantTables);
-  const table = tablesData.find((table) => table.id === parseInt(tableId, 10));
-  const user = JSON.parse(localStorage.getItem('user'));
+  const table = tablesData.find((table) => table._id === tableId);
+  const user = JSON.parse(localStorage.getItem("user"));
   const userName = user.name;
 
   return (
     <>
-      <div className="naviagtion-panel">
+      <div className="navigation-panel">
         <NavigationPanel />
       </div>
       <section className="reserved-table-section">
