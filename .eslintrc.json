@@ -24,6 +24,7 @@
     "import/no-unresolved": "off",
     "no-shadow": "off",
     "jsx-a11y/label-has-associated-control": "off",
+    "jsx-a11y/control-has-associated-label": "off",
     "no-underscore-dangle": ["error", { "allow": ["_id"] }]
   },
   "overrides": [
