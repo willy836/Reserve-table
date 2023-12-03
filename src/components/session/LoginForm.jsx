@@ -3,26 +3,27 @@ import { Link, useNavigate } from 'react-router-dom';
 import Logo from './Logo';
 
 const LoginForm = () => {
-  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showAlert, setShowAlert] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
     setLoading(true);
-    if (name) {
-      fetch('https://book-a-table.onrender.com/api/v1/login', {
+    if (email && password) {
+      const user = { email, password };
+      fetch('https://reserveatable.chickenkiller.com/api/v1/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name }),
+        body: JSON.stringify(user),
       })
         .then((response) => {
           if (!response.ok) {
-            const error = new Error(response.status);
             setShowAlert(true);
             setLoading(false);
-            throw error;
+            throw new Error(`Failed to login user. Status ${response.status}`);
           } else {
             setLoading(false);
             return response.json();
@@ -31,12 +32,16 @@ const LoginForm = () => {
         .then((data) => {
           localStorage.setItem(
             'user',
-            JSON.stringify({ id: data.user_id, name: data.user_name }),
+            JSON.stringify({
+              name: data.user.name,
+              isAdmin: data.user.isAdmin,
+              token: data.token,
+            }),
           );
           navigate('/homepage');
         })
         .catch((error) => {
-          throw new Error(error);
+          throw new Error(`Failed to login user. Error: ${error.message}`);
         });
     }
   };
@@ -61,13 +66,24 @@ const LoginForm = () => {
         </div>
         <div className="form-group-session">
           <input
-            type="text"
-            id="name"
-            name="name"
+            type="email"
+            id="email"
+            name="email"
             className="form-control"
-            placeholder="Enter your name"
-            value={name}
-            onChange={(event) => setName(event.target.value)}
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <div className="form-group-session">
+          <input
+            type="password"
+            id="password"
+            name="password"
+            className="form-control"
+            placeholder="Enter your password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
 

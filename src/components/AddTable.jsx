@@ -1,42 +1,69 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import NavigationPanel from './NavigationPanel';
 
 const AddTable = () => {
+  const navigate = useNavigate();
   const [image, setImage] = useState('');
   const [name, setName] = useState('');
   const [tableSize, setTableSize] = useState('');
   const [price, setPrice] = useState('');
   const [desc, setDesc] = useState('');
-  const { tablesData } = useSelector((state) => state.restaurantTables);
+  const [showAlert, setShowAlert] = useState(false);
 
-  const handleSubmit = (event) => {
-    const ids = tablesData.map((table) => table.id);
-    const id = Math.max(...ids) + 1;
-    event.preventDefault();
+  let token;
+  let isAdmin;
+  const userData = localStorage.getItem('user');
+  if (userData) {
+    const userObj = JSON.parse(userData);
+    token = userObj.token;
+    isAdmin = userObj.isAdmin;
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!isAdmin) {
+      setShowAlert(true);
+      setTimeout(() => {
+        setShowAlert(false);
+      }, 5000);
+      return;
+    }
     if (image && name && tableSize && price && desc) {
-      fetch('https://book-a-table.onrender.com/api/v1/restaurant_tables', {
+      fetch('https://reserveatable.chickenkiller.com/api/v1/tables', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
         body: JSON.stringify({
-          image, name, table_size: tableSize, price, desc, id,
+          image,
+          name,
+          desc,
+          price,
+          tableSize,
         }),
       })
         .then((response) => {
-          if (!response.ok) throw new Error(response.status);
+          if (!response.ok) {
+            throw new Error(
+              `Failed to create table. Status ${response.status}`,
+            );
+          }
           return response.json();
         })
         .then(() => {
-          window.location.pathname = '/homepage';
+          navigate('/homepage');
         })
         .catch((error) => {
-          throw new Error(error);
+          throw new Error(`Failed to create table. Error ${error.message}`);
         });
     }
   };
   return (
     <>
-      <div className="naviagtion-panel">
+      <div className="navigation-panel">
         <NavigationPanel />
       </div>
       <div className="container">
@@ -55,7 +82,7 @@ const AddTable = () => {
                   id="image"
                   placeholder="Image URL"
                   value={image}
-                  onChange={(event) => setImage(event.target.value)}
+                  onChange={(e) => setImage(e.target.value)}
                 />
               </div>
               <div className="form-group">
@@ -65,7 +92,7 @@ const AddTable = () => {
                   id="name"
                   placeholder="Table Name"
                   value={name}
-                  onChange={(event) => setName(event.target.value)}
+                  onChange={(e) => setName(e.target.value)}
                 />
               </div>
               <div className="form-group">
@@ -75,7 +102,7 @@ const AddTable = () => {
                   id="tableSize"
                   placeholder="Enter table capacity"
                   value={tableSize}
-                  onChange={(event) => setTableSize(event.target.value)}
+                  onChange={(e) => setTableSize(e.target.value)}
                 />
               </div>
               <div className="form-group">
@@ -85,7 +112,7 @@ const AddTable = () => {
                   id="price"
                   placeholder="Enter price of the table"
                   value={price}
-                  onChange={(event) => setPrice(event.target.value)}
+                  onChange={(e) => setPrice(e.target.value)}
                 />
               </div>
               <div className="form-group">
@@ -95,19 +122,25 @@ const AddTable = () => {
                   id="desc"
                   placeholder="Enter Table description"
                   value={desc}
-                  onChange={(event) => setDesc(event.target.value)}
+                  onChange={(e) => setDesc(e.target.value)}
                 />
               </div>
 
               <div className="btn-add-c">
-                <button type="submit" className="session-btn btn-add-table">Add Table</button>
+                <button type="submit" className="session-btn btn-add-table">
+                  Add Table
+                </button>
               </div>
             </form>
+            {showAlert && (
+              <div className="alert alert-danger mt-2" role="alert">
+                You are not authorized to perform this action
+              </div>
+            )}
           </div>
         </div>
       </div>
     </>
-
   );
 };
 

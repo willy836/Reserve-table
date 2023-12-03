@@ -22,7 +22,9 @@ const RestaurantTables = () => {
   const [singleTable, setSingleTable] = useState(tablesData ? index : null);
 
   const [threeTables, setThreeTables] = useState(
-    tablesData ? tablesData.slice(index, index + 3) : [],
+    tablesData && tablesData.length > 0
+      ? tablesData.slice(index, index + 3)
+      : [],
   );
 
   const checkNumber = (number) => {
@@ -89,7 +91,7 @@ const RestaurantTables = () => {
               </div>
               <p>
                 {`${tablesData[singleTable].desc.substring(0, 100)}...`}
-                <Link to={`/TableDetails/${tablesData[singleTable].id}`}>
+                <Link to={`/table-details/${tablesData[singleTable]._id}`}>
                   See More
                 </Link>
               </p>
@@ -109,8 +111,8 @@ const RestaurantTables = () => {
                   </h4>
                 </div>
                 <p>
-                  {`${table.desc.substring(0, 100)}...`}
-                  <Link to={`/TableDetails/${table.id}`}>See More</Link>
+                  {`${table.desc.substring(0, 90)}...`}
+                  <Link to={`/table-details/${table._id}`}>See More</Link>
                 </p>
               </div>
             </article>

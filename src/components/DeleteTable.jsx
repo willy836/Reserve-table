@@ -6,14 +6,16 @@ const DeleteTable = () => {
   const { tablesData } = useSelector((state) => state.restaurantTables);
   const dispatch = useDispatch();
 
-  const handleDelete = (id) => {
-    dispatch(deleteRestaurantTable(id));
-    window.location.href = '/homepage';
-  };
+  let isAdmin;
+  const userData = localStorage.getItem('user');
+  if (userData) {
+    const userObj = JSON.parse(userData);
+    isAdmin = userObj.isAdmin;
+  }
 
   return (
     <>
-      <div className="naviagtion-panel">
+      <div className="navigation-panel">
         <NavigationPanel />
       </div>
       <div className="container delete-container">
@@ -23,44 +25,43 @@ const DeleteTable = () => {
           </div>
         )}
         <div>
-          <h1 className="text-center">Delete a Table</h1>
+          <h1 className="text-center">Delete a Table - Admin Only!</h1>
         </div>
         {tablesData.map((table) => (
-          <div className="my-reservation mt-3 justify-content-between mb-3" key={table.id}>
+          <div
+            className="my-reservation mt-3 justify-content-between mb-3"
+            key={table._id}
+          >
             <div className="reservation-imag">
-              <img src={table.image} alt={table.name} className="my-reservation-img" />
+              <img
+                src={table.image}
+                alt={table.name}
+                className="my-reservation-img"
+              />
             </div>
             <div className="ms-3 mt-3 reserve-list">
               <ul className="reserved-items">
                 <li>
-                  <strong>
-                    Table Name:
-                  </strong>
-                  <span>
-                    {table.name}
-                  </span>
+                  <strong>Table Name:</strong>
+                  <span>{table.name}</span>
                 </li>
                 <li>
-                  <strong>
-                    Table size:
-                  </strong>
-                  <span>
-                    {table.table_size}
-                  </span>
+                  <strong>Table size:</strong>
+                  <span>{table.tableSize}</span>
                 </li>
                 <li>
-                  <strong>
-                    Price:
-
-                  </strong>
-                  <span>
-                    {table.price}
-                  </span>
+                  <strong>Price:</strong>
+                  <span>{table.price}</span>
                 </li>
-
               </ul>
 
-              <button type="button" className="btn btn-danger mt-3" onClick={() => handleDelete(table.id)}>Delete table</button>
+              <button
+                type="button"
+                className="btn btn-danger mt-3"
+                onClick={() => isAdmin && dispatch(deleteRestaurantTable(table._id))}
+              >
+                Delete table
+              </button>
             </div>
           </div>
         ))}

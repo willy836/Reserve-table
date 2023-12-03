@@ -19,10 +19,10 @@ function App() {
         <Route path="/homepage" element={<Home />} />
         <Route path="/" element={<LoginForm />} />
         <Route path="/register" element={<RegistrationForm />} />
-        <Route path="/TableDetails/:tableId" element={<TablesDetails />} />
+        <Route path="/table-details/:tableId" element={<TablesDetails />} />
         <Route path="/reservation-form" element={<ReservationForm />} />
-        <Route path="/Myresercvations" element={<MyReservations />} />
-        <Route path="/DeleteTable" element={<DeleteTable />} />
+        <Route path="/myreservations" element={<MyReservations />} />
+        <Route path="/delete-table" element={<DeleteTable />} />
         <Route
           path="/single-table/:tableId/reservation-form/:tableId"
           element={<ReservationForm />}
@@ -31,7 +31,7 @@ function App() {
           path="/reserved-table/:tableId/:city/:startDate/:endDate"
           element={<ReservedTable />}
         />
-        <Route path="/AddTable" element={<AddTable />} />
+        <Route path="/add-table" element={<AddTable />} />
       </Routes>
     </main>
   );

@@ -1,14 +1,28 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
+let token;
+const userData = localStorage.getItem('user');
+if (userData) {
+  const userObj = JSON.parse(userData);
+  token = userObj.token;
+}
+
 // async thunk for fetching from API
 export const fetchReservations = createAsyncThunk(
   'reservations/fetchReservations',
-  async (userId) => {
+  async () => {
     const response = await fetch(
-      `https://book-a-table.onrender.com/api/v1/reservations?user_id=${userId}`,
+      'https://reserveatable.chickenkiller.com/api/v1/reservations',
+      {
+        method: 'GET',
+        headers: {
+          'Content-type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      },
     );
     const data = await response.json();
-    return data;
+    return data.reservations;
   },
 );
 
@@ -16,11 +30,17 @@ export const fetchReservations = createAsyncThunk(
 export const postReservation = createAsyncThunk(
   'reservations/postReservation',
   async (reservationsData) => {
-    const response = await fetch('https://book-a-table.onrender.com/api/v1/reservations', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(reservationsData),
-    });
+    const response = await fetch(
+      'https://reserveatable.chickenkiller.com/api/v1/reservations',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(reservationsData),
+      },
+    );
     const data = await response.json();
     return data;
   },
@@ -30,38 +50,44 @@ export const postReservation = createAsyncThunk(
 export const cancelReservation = createAsyncThunk(
   'reservations/cancelReservation',
   async (reservationId) => {
-    const response = await fetch(
-      `https://book-a-table.onrender.com/api/v1/reservations/${reservationId}`,
+    await fetch(
+      `https://reserveatable.chickenkiller.com/api/v1/reservations/${reservationId}`,
       {
         method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
       },
     );
-    const id = await response.json();
-    return id;
+
+    return reservationId;
   },
 );
 
-const initialState = [];
+const initialState = {
+  reservationsData: [],
+};
 
 export const reservationsSlice = createSlice({
   name: 'reservations',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchReservations.fulfilled, (state, action) => {
-      const newState = action.payload;
-      return newState;
-    });
-    builder.addCase(postReservation.fulfilled, (state, action) => {
-      const newState = [...state, action.payload];
-      return newState;
-    });
-    builder.addCase(cancelReservation.fulfilled, (state, action) => {
-      const newState = state.filter(
-        (reservation) => reservation.id !== action.payload,
-      );
-      return newState;
-    });
+    builder.addCase(fetchReservations.fulfilled, (state, action) => ({
+      ...state,
+      reservationsData: action.payload,
+    }));
+    builder.addCase(postReservation.fulfilled, (state, action) => ({
+      ...state,
+      reservationsData: [...state.reservationsData, action.payload],
+    }));
+    builder.addCase(cancelReservation.fulfilled, (state, action) => ({
+      ...state,
+      reservationsData: state.reservationsData.filter(
+        (reservation) => reservation._id !== action.payload,
+      ),
+    }));
   },
 });
 

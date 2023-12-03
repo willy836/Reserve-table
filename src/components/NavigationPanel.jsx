@@ -39,14 +39,14 @@ const NavigationPanel = () => {
             >
               Tables
             </Link>
-            <Link to="/AddTable">Add Table</Link>
-            <Link to="/DeleteTable" activeClassName="active-link">
+            <Link to="/add-table">Add Table</Link>
+            <Link to="/delete-table" activeClassName="active-link">
               Delete Table
             </Link>
             <Link to="/reservation-form" activeClassName="active-link">
               Make Reservation
             </Link>
-            <Link to="/Myresercvations" activeClassName="active-link">
+            <Link to="/myreservations" activeClassName="active-link">
               My Reservations
             </Link>
             <LogoutButton />
@@ -64,14 +64,14 @@ const NavigationPanel = () => {
             Tables
           </NavLink>
           <NavLink
-            to="/AddTable"
+            to="/add-table"
             className="sidenav-link"
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
             Add Table
           </NavLink>
           <NavLink
-            to="/DeleteTable"
+            to="/delete-table"
             className="sidenav-link"
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
@@ -85,7 +85,7 @@ const NavigationPanel = () => {
             Make Reservation
           </NavLink>
           <NavLink
-            to="/Myresercvations"
+            to="/myreservations"
             className="sidenav-link"
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
           >

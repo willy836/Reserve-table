@@ -10,13 +10,13 @@ const ReservedTable = () => {
   } = useParams();
 
   const { tablesData } = useSelector((state) => state.restaurantTables);
-  const table = tablesData.find((table) => table.id === parseInt(tableId, 10));
+  const table = tablesData.find((table) => table._id === tableId);
   const user = JSON.parse(localStorage.getItem('user'));
   const userName = user.name;
 
   return (
     <>
-      <div className="naviagtion-panel">
+      <div className="navigation-panel">
         <NavigationPanel />
       </div>
       <section className="reserved-table-section">

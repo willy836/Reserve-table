@@ -236,6 +236,7 @@ img {
 
 .form-group-session {
   width: 70%;
+  margin-bottom: 5px;
 }
 
 /* details style */
@@ -440,6 +441,7 @@ li:nth-child(odd) {
 }
 
 /* ---My Reservation---- */
+
 .my-reserve {
   margin-left: auto;
   margin-right: auto;
@@ -698,6 +700,20 @@ li:nth-child(odd) {
   }
 
   /* -----my reservation page */
+  .my-reservation-container {
+    height: 100vh;
+    overflow: auto;
+  }
+
+  .my-reservation-page {
+    display: flex;
+    width: 100%;
+  }
+
+  .single-reservation {
+    width: 80%;
+  }
+
   .my-reservation {
     display: flex;
     flex-direction: row;
