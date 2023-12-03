@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams, useNavigate } from "react-router-dom";
-import ReactDatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import { FaCalendar } from "react-icons/fa";
-import { postReservation } from "../redux/reservations/reservationsSlice";
-import NavigationPanel from "./NavigationPanel";
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams, useNavigate } from 'react-router-dom';
+import ReactDatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { FaCalendar } from 'react-icons/fa';
+import { postReservation } from '../redux/reservations/reservationsSlice';
+import NavigationPanel from './NavigationPanel';
 
 const ReservationForm = () => {
   const navigate = useNavigate();
@@ -15,8 +15,8 @@ const ReservationForm = () => {
 
   const dispatch = useDispatch();
 
-  const [tableName, setTableName] = useState("");
-  const [city, setCity] = useState("");
+  const [tableName, setTableName] = useState('');
+  const [city, setCity] = useState('');
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
@@ -35,7 +35,7 @@ const ReservationForm = () => {
     }
   }, [tableId, tablesData]);
 
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = JSON.parse(localStorage.getItem('user'));
   const userName = user.name;
 
   const handleSubmit = (e) => {
@@ -57,14 +57,14 @@ const ReservationForm = () => {
     const redirectTableId = table ? table._id : selectedTable._id;
     navigate(
       `/reserved-table/${redirectTableId}/${encodeURIComponent(
-        city
+        city,
       )}/${encodeURIComponent(startDate)}/${encodeURIComponent(endDate)}`,
-      { replace: true }
+      { replace: true },
     );
 
-    setCity("");
-    setStartDate("");
-    setEndDate("");
+    setCity('');
+    setStartDate('');
+    setEndDate('');
   };
 
   if (!table) {
@@ -127,7 +127,7 @@ const ReservationForm = () => {
             />
             <FaCalendar
               className="calendar-icon"
-              onClick={() => document.getElementById("start-date").focus()}
+              onClick={() => document.getElementById('start-date').focus()}
             />
           </div>
           <div className="form-input date-picker-wrapper">
@@ -142,7 +142,7 @@ const ReservationForm = () => {
             />
             <FaCalendar
               className="calendar-icon"
-              onClick={() => document.getElementById("end-date").focus()}
+              onClick={() => document.getElementById('end-date').focus()}
             />
           </div>
           <button type="submit" className="reservation-btn">
@@ -197,7 +197,7 @@ const ReservationForm = () => {
         />
         <FaCalendar
           className="calendar-icon"
-          onClick={() => document.getElementById("start-date").focus()}
+          onClick={() => document.getElementById('start-date').focus()}
         />
       </div>
       <div className="form-input date-picker-wrapper">
@@ -212,7 +212,7 @@ const ReservationForm = () => {
         />
         <FaCalendar
           className="calendar-icon"
-          onClick={() => document.getElementById("end-date").focus()}
+          onClick={() => document.getElementById('end-date').focus()}
         />
       </div>
       <button type="submit" className="reservation-btn">

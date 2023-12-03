@@ -1,7 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { useDispatch } from "react-redux";
-import { cancelReservation } from "../redux/reservations/reservationsSlice";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { cancelReservation } from '../redux/reservations/reservationsSlice';
 
 const Reservation = ({ reservation }) => {
   const dispatch = useDispatch();

@@ -1,14 +1,16 @@
-import React from "react";
-import { Link, useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { FaCaretLeft } from "react-icons/fa";
-import NavigationPanel from "./NavigationPanel";
+import React from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { FaCaretLeft } from 'react-icons/fa';
+import NavigationPanel from './NavigationPanel';
 
 const TableDetails = () => {
   const { tableId } = useParams();
   const { tablesData } = useSelector((state) => state.restaurantTables);
   const table = tablesData.find((table) => table._id === tableId);
-  const { tableSize, price, name, desc, image, _id: id } = table;
+  const {
+    tableSize, price, name, desc, image, _id: id,
+  } = table;
 
   return (
     <>
@@ -26,13 +28,28 @@ const TableDetails = () => {
             </p>
             <ul className="detail-list">
               <li>
-                Table size: <span> {tableSize}</span>
+                Table size:
+                {' '}
+                <span>
+                  {' '}
+                  {tableSize}
+                </span>
               </li>
               <li>
-                Price: <span> {price}</span>
+                Price:
+                {' '}
+                <span>
+                  {' '}
+                  {price}
+                </span>
               </li>
               <li>
-                Table id: <span> {id}</span>
+                Table id:
+                {' '}
+                <span>
+                  {' '}
+                  {id}
+                </span>
               </li>
             </ul>
 

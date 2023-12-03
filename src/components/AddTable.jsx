@@ -1,19 +1,19 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import NavigationPanel from "./NavigationPanel";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import NavigationPanel from './NavigationPanel';
 
 const AddTable = () => {
   const navigate = useNavigate();
-  const [image, setImage] = useState("");
-  const [name, setName] = useState("");
-  const [tableSize, setTableSize] = useState("");
-  const [price, setPrice] = useState("");
-  const [desc, setDesc] = useState("");
+  const [image, setImage] = useState('');
+  const [name, setName] = useState('');
+  const [tableSize, setTableSize] = useState('');
+  const [price, setPrice] = useState('');
+  const [desc, setDesc] = useState('');
   const [showAlert, setShowAlert] = useState(false);
 
   let token;
   let isAdmin;
-  const userData = localStorage.getItem("user");
+  const userData = localStorage.getItem('user');
   if (userData) {
     const userObj = JSON.parse(userData);
     token = userObj.token;
@@ -31,10 +31,10 @@ const AddTable = () => {
       return;
     }
     if (image && name && tableSize && price && desc) {
-      fetch("https://reserveatable.chickenkiller.com/api/v1/tables", {
-        method: "POST",
+      fetch('https://reserveatable.chickenkiller.com/api/v1/tables', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
@@ -46,14 +46,15 @@ const AddTable = () => {
         }),
       })
         .then((response) => {
-          if (!response.ok)
+          if (!response.ok) {
             throw new Error(
-              `Failed to create table. Status ${response.status}`
+              `Failed to create table. Status ${response.status}`,
             );
+          }
           return response.json();
         })
         .then(() => {
-          navigate("/homepage");
+          navigate('/homepage');
         })
         .catch((error) => {
           throw new Error(`Failed to create table. Error ${error.message}`);

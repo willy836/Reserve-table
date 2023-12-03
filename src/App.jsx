@@ -1,16 +1,16 @@
-import "./App.css";
-import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { Routes, Route } from "react-router-dom";
-import Home from "./components/Home";
-import LoginForm from "./components/session/LoginForm";
-import RegistrationForm from "./components/session/RegistrationForm";
-import TablesDetails from "./components/TableDetails";
-import ReservationForm from "./components/ReservationForm";
-import ReservedTable from "./components/ReservedTable";
-import AddTable from "./components/AddTable";
-import MyReservations from "./components/MyReservations";
-import DeleteTable from "./components/DeleteTable";
+import './App.css';
+import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Routes, Route } from 'react-router-dom';
+import Home from './components/Home';
+import LoginForm from './components/session/LoginForm';
+import RegistrationForm from './components/session/RegistrationForm';
+import TablesDetails from './components/TableDetails';
+import ReservationForm from './components/ReservationForm';
+import ReservedTable from './components/ReservedTable';
+import AddTable from './components/AddTable';
+import MyReservations from './components/MyReservations';
+import DeleteTable from './components/DeleteTable';
 
 function App() {
   return (

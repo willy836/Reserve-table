@@ -1,56 +1,56 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 let token;
-const userData = localStorage.getItem("user");
+const userData = localStorage.getItem('user');
 if (userData) {
   const userObj = JSON.parse(userData);
   token = userObj.token;
 }
 
 export const fetchRestaurantTablesData = createAsyncThunk(
-  "restaurantTables/fetchRestaurantTablesData",
+  'restaurantTables/fetchRestaurantTablesData',
   async () => {
     const response = await fetch(
-      "https://reserveatable.chickenkiller.com/api/v1/tables",
+      'https://reserveatable.chickenkiller.com/api/v1/tables',
       {
-        method: "GET",
+        method: 'GET',
         headers: {
-          "Content-type": "application/json",
+          'Content-type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
-      }
+      },
     );
     const data = await response.json();
     return data.restaurantTables;
-  }
+  },
 );
 
 export const deleteRestaurantTable = createAsyncThunk(
-  "restaurantTables/deleteRestaurantTable",
+  'restaurantTables/deleteRestaurantTable',
   async (id) => {
     const response = await fetch(
       `https://reserveatable.chickenkiller.com/api/v1/tables/${id}`,
       {
-        method: "DELETE",
+        method: 'DELETE',
         headers: {
-          "Content-type": "application/json",
+          'Content-type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
-      }
+      },
     );
     const data = await response.json();
     return data;
-  }
+  },
 );
 
 const initialState = {
   loading: false,
   tablesData: [],
-  error: "",
+  error: '',
 };
 
 export const restaurantTablesSlice = createSlice({
-  name: "restaurantTables",
+  name: 'restaurantTables',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -67,7 +67,7 @@ export const restaurantTablesSlice = createSlice({
       return newState;
     });
     builder.addCase(fetchRestaurantTablesData.rejected, (state) => {
-      const newState = { ...state, loading: false, error: "404 Not Found" };
+      const newState = { ...state, loading: false, error: '404 Not Found' };
       return newState;
     });
     builder.addCase(deleteRestaurantTable.fulfilled, (state, action) => {
@@ -75,7 +75,7 @@ export const restaurantTablesSlice = createSlice({
         ...state,
         loading: false,
         tablesData: state.tablesData.filter(
-          (table) => table.id !== action.payload.id
+          (table) => table.id !== action.payload.id,
         ),
       };
       return newState;

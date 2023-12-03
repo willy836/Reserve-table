@@ -1,8 +1,8 @@
-import React, { useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import Reservation from "./Reservation";
-import NavigationPanel from "./NavigationPanel";
-import { fetchReservations } from "../redux/reservations/reservationsSlice";
+import React, { useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import Reservation from './Reservation';
+import NavigationPanel from './NavigationPanel';
+import { fetchReservations } from '../redux/reservations/reservationsSlice';
 
 const MyReservations = () => {
   const dispatch = useDispatch();

@@ -1,13 +1,13 @@
-import { useDispatch, useSelector } from "react-redux";
-import { deleteRestaurantTable } from "../redux/tables/restaurantTablesSlice";
-import NavigationPanel from "./NavigationPanel";
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteRestaurantTable } from '../redux/tables/restaurantTablesSlice';
+import NavigationPanel from './NavigationPanel';
 
 const DeleteTable = () => {
   const { tablesData } = useSelector((state) => state.restaurantTables);
   const dispatch = useDispatch();
 
   let isAdmin;
-  const userData = localStorage.getItem("user");
+  const userData = localStorage.getItem('user');
   if (userData) {
     const userObj = JSON.parse(userData);
     isAdmin = userObj.isAdmin;
@@ -58,9 +58,7 @@ const DeleteTable = () => {
               <button
                 type="button"
                 className="btn btn-danger mt-3"
-                onClick={() =>
-                  isAdmin && dispatch(deleteRestaurantTable(table._id))
-                }
+                onClick={() => isAdmin && dispatch(deleteRestaurantTable(table._id))}
               >
                 Delete table
               </button>
