@@ -31,13 +31,15 @@
 
 # 📖 [Restaurant Table Reservation] <a name="about-project"></a>
 
-**[Restaurant Table Reservation]** is an app that allows user to register, add a table, reserve a table and delete the table or the reservation. The backend is built using Node.js and communicates with the frontend of the app to provide a seamless user experience.
+**[Restaurant Table Reservation]** is a React app that allows a user to register, reserve a table and cancel their reservations at their favorite restaurant. The backend is built using Node.js and communicates with the frontend of the app to provide a seamless user experience.
 
 ## 🛠 Built With <a name="built-with"></a>
 
 ### Tech Stack <a name="tech-stack"></a>
 
-> Describe the tech stack and include only the relevant sections that apply to your project.
+- **[React/Redux]**
+- **[JavaScript]**
+- **[CSS]**
 
 <details>
   <summary>Client</summary>
@@ -71,7 +73,7 @@ Click [here](https://github.com/willy836/Reserve-table-API) to access the back e
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Live Demo Link]()
+- [Live Demo Link](https://reserve-table.vercel.app/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
