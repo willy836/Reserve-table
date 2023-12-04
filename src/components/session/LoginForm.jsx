@@ -58,7 +58,7 @@ const LoginForm = () => {
       <form onSubmit={handleSubmit} className="mt-5 card p-5 my-card">
         {showAlert && (
           <div className="alert alert-danger" role="alert">
-            Invalid name
+            Invalid credentials
           </div>
         )}
         <div className="logo-container">
